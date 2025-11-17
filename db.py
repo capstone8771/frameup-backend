@@ -13,5 +13,5 @@ def get_connection():
             cursorclass=pymysql.cursors.DictCursor
         )
     except Exception as e:
-        print("DB 연결 실패:", e)
+        print("DB CONNECTION ERROR:", e)   # ⭐ 진짜 에러 메시지 출력
         return None
