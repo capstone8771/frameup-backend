@@ -19,7 +19,7 @@ def root():
     return {"message": "FrameUp Backend API Running!"}
 
 
-# ✅ DB 연결 테스트 엔드포인트
+# DB 연결 테스트 엔드포인트
 @app.get("/test-db")
 def test_db():
     conn = get_connection()
