@@ -1,9 +1,16 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
+from db import get_connection
 
 app = FastAPI()
 
-@app.post("/submit")
-async def submit_data(request: Request):
-    data = await request.json()
-    print("from frontend:", data)
-    return {"message": "ok"}
+@app.get("/test-db")
+def test_db():
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT NOW()")
+        result = cursor.fetchone()
+        conn.close()
+        return {"success": True, "db_time": result}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
